@@ -11,8 +11,8 @@ function Вперед () {
     pins.analogWritePin(AnalogPin.P1, лево)
     pins.digitalWritePin(DigitalPin.P13, 1)
     pins.digitalWritePin(DigitalPin.P14, 0)
-    pins.digitalWritePin(DigitalPin.P15, 0)
-    pins.digitalWritePin(DigitalPin.P16, 1)
+    pins.digitalWritePin(DigitalPin.P15, 1)
+    pins.digitalWritePin(DigitalPin.P16, 0)
 }
 function Право () {
     pins.analogWritePin(AnalogPin.P0, право)
