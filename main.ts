@@ -1,9 +1,9 @@
 function стоп () {
     pins.analogWritePin(AnalogPin.P0, 0)
-    pins.digitalWritePin(DigitalPin.P13, 0)
-    pins.digitalWritePin(DigitalPin.P14, 0)
-    pins.digitalWritePin(DigitalPin.P15, 0)
-    pins.digitalWritePin(DigitalPin.P16, 0)
+    pins.digitalWritePin(DigitalPin.P13, 1)
+    pins.digitalWritePin(DigitalPin.P14, 1)
+    pins.digitalWritePin(DigitalPin.P15, 1)
+    pins.digitalWritePin(DigitalPin.P16, 1)
     pins.analogWritePin(AnalogPin.P1, 0)
 }
 function Вперед () {
