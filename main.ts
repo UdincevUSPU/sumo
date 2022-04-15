@@ -1,10 +1,10 @@
 function стоп () {
-    pins.analogWritePin(AnalogPin.P0, 0)
+    pins.analogWritePin(AnalogPin.P0, 1)
     pins.digitalWritePin(DigitalPin.P13, 1)
     pins.digitalWritePin(DigitalPin.P14, 1)
     pins.digitalWritePin(DigitalPin.P15, 1)
     pins.digitalWritePin(DigitalPin.P16, 1)
-    pins.analogWritePin(AnalogPin.P1, 0)
+    pins.analogWritePin(AnalogPin.P1, 1)
 }
 function Вперед () {
     pins.analogWritePin(AnalogPin.P0, право)
@@ -56,34 +56,35 @@ basic.forever(function () {
         a = 1
     }
     if (a) {
+        if (pins.analogReadPin(AnalogPin.P2) > 45) {
+            basic.showLeds(`
+                . . . . .
+                . # # # .
+                . # . # .
+                . # # # .
+                . . . . .
+                `)
+            назад()
+            control.waitMicros(6000)
+            control.waitMicros(6000)
+            Лево()
+            control.waitMicros(6000)
+            control.waitMicros(6000)
+        }
         if (sonar.ping(
         DigitalPin.P9,
         DigitalPin.P8,
-        PingUnit.Centimeters
-        ) > 15) {
-            if (pins.analogReadPin(AnalogPin.P2) < 500) {
-                Лево()
-                basic.showLeds(`
-                    . . # . .
-                    . . # . .
-                    . # . # .
-                    . # . # .
-                    # . . . #
-                    `)
-            }
-        } else {
-            if (pins.analogReadPin(AnalogPin.P2) < 500) {
-                Рывок()
-                basic.showLeds(`
-                    # . . . #
-                    . # . # .
-                    . . # . .
-                    . # . # .
-                    # . . . #
-                    `)
-            } else {
-                стоп()
-            }
+        PingUnit.MicroSeconds
+        ) > 15 && pins.analogReadPin(AnalogPin.P2) <= 45) {
+            control.waitMicros(10)
+            basic.showLeds(`
+                . # . # .
+                . # . # .
+                . # # # .
+                . # . # .
+                . # . # .
+                `)
+            Вперед()
         }
     }
 })
